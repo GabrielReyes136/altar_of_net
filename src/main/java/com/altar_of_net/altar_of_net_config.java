@@ -4,7 +4,7 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("example")
+@ConfigGroup("altar-of-net-deprecated")
 public interface altar_of_net_config extends Config
 {
 	@ConfigItem(
