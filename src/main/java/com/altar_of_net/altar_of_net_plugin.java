@@ -65,8 +65,11 @@ public class altar_of_net_plugin extends Plugin
 
 	@Inject
 	private ChatCommandManager altarOfNetChatCommandManager;
-	@Inject
-	private altar_of_net_config config;
+
+	/*@Inject
+	private altar-of-net-config config;
+	*/
+
 
 	private ClanChannel myCurrentClanChannel;
 
