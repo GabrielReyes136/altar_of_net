@@ -82,7 +82,7 @@ public class altar_of_net_plugin extends Plugin
 
 
 		try {
-			log.info("ALTAR OF NET: Attempting to initiate commands");
+			
 			altarOfNetChatCommandManager.registerCommand(EIGHT_BALL_COMMAND_STRING, this::eight_ball_handler);
 			altarOfNetChatCommandManager.registerCommand(GREET_COMMAND_STRING, this::greet_handler);
 			altarOfNetChatCommandManager.registerCommand(RANKS_HELPER, this::ranks_handler);
@@ -102,20 +102,14 @@ public class altar_of_net_plugin extends Plugin
 		} catch(NullPointerException e) {
 
 			e.printStackTrace(pw);
-			log.info(sw.toString());
+			
 		}
 
 
-		log.info("Example started!");
+		
 	}
 
-	/*
-		if (myCurrentClanChannel != null)
-				myCurrentClanChannel = client.getClanChannel();
-		else {
-			log.info(myCurrentClanChannel.getName());
-		}
-		*/
+	
 
 
 
@@ -137,7 +131,7 @@ public class altar_of_net_plugin extends Plugin
 		altarOfNetChatCommandManager.unregisterCommand(DICER_COMMAND);
 		altarOfNetChatCommandManager.unregisterCommand(LASER_COMMAND);
 		altarOfNetChatCommandManager.unregisterCommand(GRATZ_COMMAND);
-		log.info("Example stopped!");
+		
 	}
 
 	@Subscribe
@@ -149,33 +143,7 @@ public class altar_of_net_plugin extends Plugin
 		}
 	}
 
-	/* @Subscribe
-	public void onChatMessage( net.runelite.api.events.ChatMessage chatMessage) {
-		client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "swagger" + config.greeting(), null);
-	Instant.now().atZone(ZoneOffset.UTC).toInstant().toEpochMilli() / 3500.sha1();
 
-	https://static.runelite.net/api/runelite-api/net/runelite/api/events/ChatMessage.html#getTimestamp()
-	}
-	*/
-/*
-	@Subscribe
-	public void onChatMessage(ChatMessage chatMessage) {
-		//log.info(chatMessage.toString());
-
-		try {
-			if(chatMessage.getType() == CLAN_CHAT )
-				//client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", chatMessage.getMessage(), null)
-				//chatMessage.setMessage("test");
-				chatMessage.getMessageNode().setValue(" {USER} has been kicked from the channel ");
-		} catch (Exception e) {
-			log.info("an exception!");
-		}
-
-
-
-	}
-
-	*/
 	private boolean validate_client( String caller) {
 
 			myCurrentClanChannel = client.getClanChannel();
@@ -187,7 +155,8 @@ public class altar_of_net_plugin extends Plugin
 					client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you must be a member of the altar of net clan to use this command" , null);
 				}
 			}
-			log.info( isPlayerInAltarOfNet ? "validation PASS: " + caller : "validation FAIL: " + caller);
+			
+			
 			return isPlayerInAltarOfNet;
 	}
 	private void gratz_handler( ChatMessage chatMessage, String Message) {
