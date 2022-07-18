@@ -137,10 +137,12 @@ public class altar_of_net_plugin extends Plugin
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged gameStateChanged)
 	{
+		/*
 		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
 		{
 			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "ALTAR OF NET MESSAGE: this plug-in will only work if you are part of the clan: altar of net", null);
 		}
+		*/
 	}
 
 
@@ -152,7 +154,7 @@ public class altar_of_net_plugin extends Plugin
 					isPlayerInAltarOfNet = true;
 				else {
 					isPlayerInAltarOfNet = false;
-					client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you must be a member of the altar of net clan to use this command" , null);
+					//client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you must be a member of the altar of net clan to use this command" , null);
 				}
 			}
 			
