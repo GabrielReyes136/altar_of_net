@@ -553,12 +553,13 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 
-
+/*
 	@Provides
 	altar_of_net_config provideConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(altar_of_net_config.class);
 	}
+	*/
 
 
 }
