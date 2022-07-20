@@ -1,6 +1,5 @@
 
-current version 1.0.1
-
+current version 1.0.1 : 
 
 !greet !slap !kill !beg !give  !gratz
 
