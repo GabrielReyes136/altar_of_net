@@ -86,7 +86,13 @@ public class altar_of_net_plugin extends Plugin
 
 		try {
 			
+			 
+			/*
+			DEPRECATED : DEVELOPER MODE ONLY!!!!! DO NOT USE
 			altarOfNetChatCommandManager.registerCommand(EIGHT_BALL_COMMAND_STRING, this::eight_ball_handler);
+			*/
+			
+			
 			altarOfNetChatCommandManager.registerCommand(GREET_COMMAND_STRING, this::greet_handler);
 			altarOfNetChatCommandManager.registerCommand(RANKS_HELPER, this::ranks_handler);
 			altarOfNetChatCommandManager.registerCommand(MUTE_COMMAND, this::mute_handler);
@@ -98,8 +104,11 @@ public class altar_of_net_plugin extends Plugin
 			altarOfNetChatCommandManager.registerCommand(EVERYONE_ENTER_CORPOREAL_BEAST, this::bgs);
 			altarOfNetChatCommandManager.registerCommand(BEG_COMMAND, this::beg_handler);
 			altarOfNetChatCommandManager.registerCommand(GIVE_COMMAND, this::give_handler);
+			
+			/* DEPRECATED: DEVELOPER MODE ONLY!!!! DO NOT USE
 			altarOfNetChatCommandManager.registerCommand(DICER_COMMAND, this::dicer);
 			altarOfNetChatCommandManager.registerCommand(LASER_COMMAND, this::laser);
+			*/
 			altarOfNetChatCommandManager.registerCommand(GRATZ_COMMAND, this::gratz_handler);
 
 		} catch(NullPointerException e) {
@@ -119,7 +128,7 @@ public class altar_of_net_plugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
-		altarOfNetChatCommandManager.unregisterCommand(EIGHT_BALL_COMMAND_STRING);
+		//altarOfNetChatCommandManager.unregisterCommand(EIGHT_BALL_COMMAND_STRING);
 		altarOfNetChatCommandManager.unregisterCommand(GREET_COMMAND_STRING);
 		altarOfNetChatCommandManager.unregisterCommand(RANKS_HELPER);
 		altarOfNetChatCommandManager.unregisterCommand(MUTE_COMMAND);
@@ -131,8 +140,8 @@ public class altar_of_net_plugin extends Plugin
 		altarOfNetChatCommandManager.unregisterCommand(EVERYONE_ENTER_CORPOREAL_BEAST);
 		altarOfNetChatCommandManager.unregisterCommand(BEG_COMMAND);
 		altarOfNetChatCommandManager.unregisterCommand(GIVE_COMMAND);
-		altarOfNetChatCommandManager.unregisterCommand(DICER_COMMAND);
-		altarOfNetChatCommandManager.unregisterCommand(LASER_COMMAND);
+		//altarOfNetChatCommandManager.unregisterCommand(DICER_COMMAND);
+		//altarOfNetChatCommandManager.unregisterCommand(LASER_COMMAND);
 		altarOfNetChatCommandManager.unregisterCommand(GRATZ_COMMAND);
 		
 	}
@@ -305,7 +314,7 @@ public class altar_of_net_plugin extends Plugin
 				.append(ChatColorType.NORMAL)
 				.append(", The chat commands are ")
 				.append(ChatColorType.HIGHLIGHT)
-				.append("!8ball !greet !dice !slap !kill !beg !give !laser !gratz")
+				.append("!greet !slap !kill !beg !give !gratz")
 				.build();
 		final MessageNode myNode = chatMessage.getMessageNode();
 		myNode.setRuneLiteFormatMessage(response);
