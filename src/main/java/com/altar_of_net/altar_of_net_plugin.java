@@ -52,7 +52,6 @@ public class altar_of_net_plugin extends Plugin
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 
-		try {
 
 			altarOfNetChatCommandManager.registerCommand(GREET_COMMAND_STRING, this::greet_handler);
 			altarOfNetChatCommandManager.registerCommand(RANKS_HELPER, this::ranks_handler);
@@ -69,10 +68,7 @@ public class altar_of_net_plugin extends Plugin
 
 			altarOfNetChatCommandManager.registerCommand(GRATZ_COMMAND, this::gratz_handler);
 
-		} catch(NullPointerException e) {
-
-			e.printStackTrace(pw);
-		}
+		
 	}
 
 
