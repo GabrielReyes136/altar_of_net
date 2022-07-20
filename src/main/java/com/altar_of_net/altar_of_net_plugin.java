@@ -89,7 +89,7 @@ public class altar_of_net_plugin extends Plugin
 			 
 			/*
 			DEPRECATED : DEVELOPER MODE ONLY!!!!! DO NOT USE
-			altarOfNetChatCommandManager.registerCommand(EIGHT_BALL_COMMAND_STRING, this::eight_ball_handler);
+			altarOfNetChatCommandManager.registerCommand(NULL, NULL);
 			*/
 			
 			
@@ -106,8 +106,8 @@ public class altar_of_net_plugin extends Plugin
 			altarOfNetChatCommandManager.registerCommand(GIVE_COMMAND, this::give_handler);
 			
 			/* DEPRECATED: DEVELOPER MODE ONLY!!!! DO NOT USE
-			altarOfNetChatCommandManager.registerCommand(DICER_COMMAND, this::dicer);
-			altarOfNetChatCommandManager.registerCommand(LASER_COMMAND, this::laser);
+			altarOfNetChatCommandManager.registerCommand(NULL, NULL);
+			altarOfNetChatCommandManager.registerCommand(NULL, NULL);
 			*/
 			altarOfNetChatCommandManager.registerCommand(GRATZ_COMMAND, this::gratz_handler);
 
@@ -202,14 +202,14 @@ public class altar_of_net_plugin extends Plugin
 	}
 	
 	/* DO NOT USE THIS HANDLER! IT WILL BREAK THE PROGRAM
-	private void eight_ball_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("8ball-handler") ) {
+	private void _handler( ChatMessage chatMessage, String Message) {
+		if ( !validate_client("NULL") ) {
 			//output error message
 			return;
 		}
 		String[] t0 = Message.split(" ", 2);
 		if( t0.length != 2) {
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you used the command incorrectly. type !8ball followed by a question" , null);
+			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you used the command incorrectly." , null);
 			return;
 		}
 
@@ -217,8 +217,8 @@ public class altar_of_net_plugin extends Plugin
 
 	}
 	
-	private void dicer( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("dicer-handler") ) {
+	private void NULL( ChatMessage chatMessage, String Message) {
+		if ( !validate_client("NULL") ) {
 			//output error message
 			return;
 		}
@@ -227,7 +227,7 @@ public class altar_of_net_plugin extends Plugin
 				.append(ChatColorType.HIGHLIGHT)
 				.append(chatMessage.getName())
 				.append(ChatColorType.NORMAL)
-				.append(" rolls the dice for ")
+				.append(" GET THE FUCK OUT OF HERE ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(the_string)
 				.build();
@@ -236,8 +236,8 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 
 	}
-	private void laser( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("laser-handler") ) {
+	private void NULLE( ChatMessage chatMessage, String Message) {
+		if ( !validate_client("NULL") ) {
 			//output error message
 			return;
 		}
@@ -248,19 +248,6 @@ public class altar_of_net_plugin extends Plugin
 		t1 = t0[1];
 
 
-		String response = new ChatMessageBuilder()
-				.append(ChatColorType.HIGHLIGHT)
-				.append(chatMessage.getName())
-				.append(ChatColorType.NORMAL)
-				.append(" has fired a laser projectile at ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(t1)
-				.append(ChatColorType.NORMAL)
-				.append(" for ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(the_string)
-				.append(" damage.")
-				.build();
 		final MessageNode myNode = chatMessage.getMessageNode();
 		myNode.setRuneLiteFormatMessage(response);
 		client.refreshChat();
