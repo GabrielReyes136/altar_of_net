@@ -75,8 +75,8 @@ public class altar_of_net_plugin extends Plugin
 	{
 		myCurrentClanChannel = null;
 		isPlayerInAltarOfNet = false;
-		altarOfNetEightBall = new EightBall();
-		altarOfNetEightBall2 = new EightBall(new String[] {"1", "2","3", "4","5","6"}, 6);
+		developerOnlyFunction = new EightBall();
+		developerOnlyFunction2 = new EightBall(new String[] {"1"}, 1);
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 
