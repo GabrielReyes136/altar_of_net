@@ -86,7 +86,7 @@ public class altar_of_net_plugin extends Plugin
 
 		try {
 			
-			 
+			 //*developer note: the deprecated code is there to be reused for a future command in the future
 			/*
 			DEPRECATED : DEVELOPER MODE ONLY!!!!! DO NOT USE
 			altarOfNetChatCommandManager.registerCommand(NULL, NULL);
