@@ -1,33 +1,23 @@
 package com.altar_of_net;
 
-import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GameTick;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
-import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.events.ChatInput;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.chat.ChatCommandManager;
 import net.runelite.api.events.ChatMessage;
-import net.runelite.client.plugins.chatcommands.ChatCommandsConfig;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.function.BiConsumer;
-import java.util.function.BiPredicate;
-import java.util.function.Consumer;
-import com.altar_of_net.EightBall;
-import com.altar_of_net.AltarOfNetUtils;
-import static net.runelite.api.ChatMessageType.CLAN_CHAT;
 
 @Slf4j
 @PluginDescriptor(
@@ -55,8 +45,6 @@ public class altar_of_net_plugin extends Plugin
 
 
 	private long my_time;
-	private EightBall altarOfNetEightBall;
-	private EightBall altarOfNetEightBall2;
 	@Inject
 	private Client client;
 
@@ -75,20 +63,13 @@ public class altar_of_net_plugin extends Plugin
 	{
 		myCurrentClanChannel = null;
 		isPlayerInAltarOfNet = false;
-		altarOfNetEightBall = new EightBall();
-		altarOfNetEightBall2 = new EightBall(new String[] {"1", "2","3", "4","5","6"}, 6);
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 
 
 		try {
 			
-			 //*developer note: the deprecated code is there to be reused for a future command in the future
-			/*
-			DEPRECATED : DEVELOPER MODE ONLY!!!!! DO NOT USE
-			altarOfNetChatCommandManager.registerCommand(NULL, NULL);
-			*/
-			
+
 			
 			altarOfNetChatCommandManager.registerCommand(GREET_COMMAND_STRING, this::greet_handler);
 			altarOfNetChatCommandManager.registerCommand(RANKS_HELPER, this::ranks_handler);
@@ -102,10 +83,7 @@ public class altar_of_net_plugin extends Plugin
 			altarOfNetChatCommandManager.registerCommand(BEG_COMMAND, this::beg_handler);
 			altarOfNetChatCommandManager.registerCommand(GIVE_COMMAND, this::give_handler);
 			
-			/* DEPRECATED: DEVELOPER MODE ONLY!!!! DO NOT USE
-			altarOfNetChatCommandManager.registerCommand(NULL, NULL);
-			altarOfNetChatCommandManager.registerCommand(NULL, NULL);
-			*/
+
 			altarOfNetChatCommandManager.registerCommand(GRATZ_COMMAND, this::gratz_handler);
 
 		} catch(NullPointerException e) {
@@ -125,7 +103,7 @@ public class altar_of_net_plugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
-		//altarOfNetChatCommandManager.unregisterCommand(NULL);
+
 		altarOfNetChatCommandManager.unregisterCommand(GREET_COMMAND_STRING);
 		altarOfNetChatCommandManager.unregisterCommand(RANKS_HELPER);
 		altarOfNetChatCommandManager.unregisterCommand(MUTE_COMMAND);
@@ -137,26 +115,18 @@ public class altar_of_net_plugin extends Plugin
 		altarOfNetChatCommandManager.unregisterCommand(EVERYONE_ENTER_CORPOREAL_BEAST);
 		altarOfNetChatCommandManager.unregisterCommand(BEG_COMMAND);
 		altarOfNetChatCommandManager.unregisterCommand(GIVE_COMMAND);
-		//altarOfNetChatCommandManager.unregisterCommand(NULL);
-		//altarOfNetChatCommandManager.unregisterCommand(NULL);
+
 		altarOfNetChatCommandManager.unregisterCommand(GRATZ_COMMAND);
 		
 	}
 
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged gameStateChanged)
-	{
-		/*
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
-		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "ALTAR OF NET MESSAGE: this plug-in will only work if you are part of the clan: altar of net", null);
-		}
-		*/
-	}
 
 
 	private boolean validate_client( String caller) {
+			return true;
 
+			/* planned to be used in future for commands to have different effects
+			   based on the users current active cc
 			myCurrentClanChannel = client.getClanChannel();
 			if(myCurrentClanChannel != null) {
 				if (myCurrentClanChannel.getName().equals("altar of net"))
@@ -169,6 +139,8 @@ public class altar_of_net_plugin extends Plugin
 			
 			
 			return isPlayerInAltarOfNet;
+			*/
+
 	}
 	private void gratz_handler( ChatMessage chatMessage, String Message) {
 		if ( !validate_client("gratz-handler") ) {
@@ -180,7 +152,7 @@ public class altar_of_net_plugin extends Plugin
 		String response;
 		if (t0.length < 2) {
 		response = myBuilder.append(ChatColorType.NORMAL)
-				.append("@@@@ GRATZ @@@@@ from ")
+				.append("[altar of net] @@@@ GRATZ @@@@@ from ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(chatMessage.getName())
 				.build();
@@ -197,60 +169,7 @@ public class altar_of_net_plugin extends Plugin
 		myNode.setRuneLiteFormatMessage(response);
 		client.refreshChat();
 	}
-	
-	/* template handler(s) reserved for future use
-	private void _handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("NULL") ) {
-			//output error message
-			return;
-		}
-		String[] t0 = Message.split(" ", 2);
-		if( t0.length != 2) {
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you used the command incorrectly." , null);
-			return;
-		}
 
-
-
-	}
-	
-	private void NULL( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("NULL") ) {
-			//output error message
-			return;
-		}
-
-		String response = new ChatMessageBuilder()
-				.append(ChatColorType.HIGHLIGHT)
-				.append(chatMessage.getName())
-				.append(ChatColorType.NORMAL)
-				.append(" ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(the_string)
-				.build();
-		final MessageNode myNode = chatMessage.getMessageNode();
-		myNode.setRuneLiteFormatMessage(response);
-		client.refreshChat();
-
-	}
-	private void NULLE( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("NULL") ) {
-			//output error message
-			return;
-		}
-		String[] t0 = Message.split(" ", 2);
-		String t1;
-		if( t0.length != 2)
-			return;
-		t1 = t0[1];
-
-
-		final MessageNode myNode = chatMessage.getMessageNode();
-		myNode.setRuneLiteFormatMessage(response);
-		client.refreshChat();
-
-	}
-	*/
 	private void greet_handler( ChatMessage chatMessage, String Message) {
 		if ( !validate_client("greet-handler") ) {
 			//output error message
@@ -341,6 +260,8 @@ public class altar_of_net_plugin extends Plugin
 		String[] t0 = Message.split(" ", 2);
 		if (t0.length != 2) return;
 		String response = new ChatMessageBuilder()
+				.append(ChatColorType.NORMAL)
+				.append("[altar of net:] ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(chatMessage.getName())
 				.append(ChatColorType.NORMAL)
@@ -363,6 +284,8 @@ public class altar_of_net_plugin extends Plugin
 		String[] t0 = Message.split(" ", 2);
 		if (t0.length != 2) return;
 		String response = new ChatMessageBuilder()
+				.append(ChatColorType.NORMAL)
+				.append("[altar of net:] ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(chatMessage.getName())
 				.append(ChatColorType.NORMAL)
@@ -386,7 +309,7 @@ public class altar_of_net_plugin extends Plugin
 		if (t0.length != 2) return;
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.NORMAL)
-				.append("I want to attack ")
+				.append("[altar of net:] I want to attack ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(t0[1])
 				.append(ChatColorType.NORMAL)
@@ -410,6 +333,8 @@ public class altar_of_net_plugin extends Plugin
 	if(Message != null) {
 		if (Message.isEmpty()) return;
 		String response = new ChatMessageBuilder()
+				.append(ChatColorType.NORMAL)
+				.append("[altar of net:] ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(t0[1])
 				.append(ChatColorType.NORMAL)
@@ -434,6 +359,8 @@ public class altar_of_net_plugin extends Plugin
 		if(Message != null) {
 			if (Message.isEmpty()) return;
 			String response = new ChatMessageBuilder()
+					.append(ChatColorType.NORMAL)
+					.append("[altar of net:] ")
 					.append(ChatColorType.HIGHLIGHT)
 					.append(t0[1])
 					.append(ChatColorType.NORMAL)
@@ -454,6 +381,7 @@ public class altar_of_net_plugin extends Plugin
 
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.NORMAL)
+				.append("[altar of net:] ")
 				.append("TBOW:")
 				.append(ChatColorType.HIGHLIGHT)
 				.append("legacy ")
@@ -527,7 +455,7 @@ public class altar_of_net_plugin extends Plugin
 		}
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.NORMAL)
-				.append("CLAN EVENT ALERT: ")
+				.append("[altar of net EVENT:] ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(t1)
 				.append(ChatColorType.NORMAL)
@@ -546,7 +474,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 
-/*
+/* config template
 	@Provides
 	altar_of_net_config provideConfig(ConfigManager configManager)
 	{

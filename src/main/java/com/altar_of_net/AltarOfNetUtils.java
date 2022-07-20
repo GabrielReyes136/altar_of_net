@@ -13,8 +13,7 @@ public class AltarOfNetUtils {
         return result;
     }
 
-    //what are you doing here!?? this is altar of net's private pre computed PRNG
-    //get out!!!!!!
+    //pre computed PRNG in case I ever need to add more randomness
     public static final String[] TwisterOutput = {"3596981943", "2237974425",  "3827224957", "2514757895", "426484368",
             "955444628", "1982846266", "3690734264", "2164407755", "2213046834",
             "1724693857", "51549213", "1214613897" , "969393410", "3593568815",
