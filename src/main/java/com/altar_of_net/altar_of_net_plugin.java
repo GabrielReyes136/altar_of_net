@@ -128,7 +128,7 @@ public class altar_of_net_plugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
-		//altarOfNetChatCommandManager.unregisterCommand(EIGHT_BALL_COMMAND_STRING);
+		//altarOfNetChatCommandManager.unregisterCommand(NULL);
 		altarOfNetChatCommandManager.unregisterCommand(GREET_COMMAND_STRING);
 		altarOfNetChatCommandManager.unregisterCommand(RANKS_HELPER);
 		altarOfNetChatCommandManager.unregisterCommand(MUTE_COMMAND);
@@ -140,8 +140,8 @@ public class altar_of_net_plugin extends Plugin
 		altarOfNetChatCommandManager.unregisterCommand(EVERYONE_ENTER_CORPOREAL_BEAST);
 		altarOfNetChatCommandManager.unregisterCommand(BEG_COMMAND);
 		altarOfNetChatCommandManager.unregisterCommand(GIVE_COMMAND);
-		//altarOfNetChatCommandManager.unregisterCommand(DICER_COMMAND);
-		//altarOfNetChatCommandManager.unregisterCommand(LASER_COMMAND);
+		//altarOfNetChatCommandManager.unregisterCommand(NULL);
+		//altarOfNetChatCommandManager.unregisterCommand(NULL);
 		altarOfNetChatCommandManager.unregisterCommand(GRATZ_COMMAND);
 		
 	}
@@ -201,7 +201,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	
-	/* DO NOT USE THIS HANDLER! IT WILL BREAK THE PROGRAM
+	/* template handler(s) reserved for future use
 	private void _handler( ChatMessage chatMessage, String Message) {
 		if ( !validate_client("NULL") ) {
 			//output error message
@@ -227,7 +227,7 @@ public class altar_of_net_plugin extends Plugin
 				.append(ChatColorType.HIGHLIGHT)
 				.append(chatMessage.getName())
 				.append(ChatColorType.NORMAL)
-				.append(" GET THE FUCK OUT OF HERE ")
+				.append(" ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(the_string)
 				.build();
