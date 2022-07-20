@@ -200,6 +200,8 @@ public class altar_of_net_plugin extends Plugin
 		myNode.setRuneLiteFormatMessage(response);
 		client.refreshChat();
 	}
+	
+	/* DO NOT USE THIS HANDLER! IT WILL BREAK THE PROGRAM
 	private void eight_ball_handler( ChatMessage chatMessage, String Message) {
 		if ( !validate_client("8ball-handler") ) {
 			//output error message
@@ -211,20 +213,16 @@ public class altar_of_net_plugin extends Plugin
 			return;
 		}
 
-		int my_val = Math.abs(  (int)(Instant.now().atZone(ZoneOffset.UTC).toInstant().toEpochMilli() / 3000)   );
-		int len = AltarOfNetUtils.TwisterOutput.length;
-		String the_string = altarOfNetEightBall.getAnswer( Math.abs((int)(Long.parseLong(AltarOfNetUtils.TwisterOutput[(my_val % len)].trim()))) );
-		client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "[MAGICAL 8BALL SAYS:] " + chatMessage.getName() + ", " +  the_string , null);
-		client.refreshChat();
+
+
 	}
+	
 	private void dicer( ChatMessage chatMessage, String Message) {
 		if ( !validate_client("dicer-handler") ) {
 			//output error message
 			return;
 		}
-		int my_val = Math.abs(  (int)(Instant.now().atZone(ZoneOffset.UTC).toInstant().toEpochMilli() / 1500)   );
-		int len = AltarOfNetUtils.TwisterOutput.length;
-		String the_string = altarOfNetEightBall2.getAnswer(Math.abs((int)(Long.parseLong(AltarOfNetUtils.TwisterOutput[(my_val % len)].trim()))));
+
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.HIGHLIGHT)
 				.append(chatMessage.getName())
@@ -249,9 +247,7 @@ public class altar_of_net_plugin extends Plugin
 			return;
 		t1 = t0[1];
 
-		int my_val = Math.abs(  (int)(Instant.now().atZone(ZoneOffset.UTC).toInstant().toEpochMilli() / 1000)   );
-		int len = AltarOfNetUtils.TwisterOutput.length;
-		String the_string = (AltarOfNetUtils.TwisterOutput[(my_val % len)].trim()) ;
+
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.HIGHLIGHT)
 				.append(chatMessage.getName())
@@ -270,6 +266,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 
 	}
+	*/
 	private void greet_handler( ChatMessage chatMessage, String Message) {
 		if ( !validate_client("greet-handler") ) {
 			//output error message
