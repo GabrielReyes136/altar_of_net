@@ -42,12 +42,9 @@ public class altar_of_net_plugin extends Plugin
 	public static final String SLAP_COMMAND = "!slap";
 	public static final String TANK_ENTER_CORPOREAL_BEAST = "!pre";
 	public static final String EVERYONE_ENTER_CORPOREAL_BEAST = "!bgs";
-	public static final String DICER_COMMAND = "!dice";
 	public static final String COMMAND_HELPER = "!help";
 	public static final String RANKS_HELPER = "!ranks";
 	public static final String GREET_COMMAND_STRING = "!greet";
-	public static final String EIGHT_BALL_COMMAND_STRING = "!8ball";
-	public static final String LASER_COMMAND = "!laser";
 	public static final String MUTE_COMMAND = "!mute";
 
 	public static final String BEG_COMMAND = "!beg";
