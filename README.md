@@ -1,24 +1,23 @@
 
 current version 1.0.1
-Below is a list of functionality as of version 1.0.1
+
 
 !greet !slap !kill !beg !give  !gratz
 
-
-!greet 
+!greet: 
 example usage: !greet player-to-greet
 
-!slap
+!slap: 
 example-usage: !slap target
 
-!kill
+!kill: 
 example-usage: !Kill target
 
-!beg
+!beg: 
 example-usage: !beg item_or_amount_you_are_begging_for
 
-!give
+!give: 
 example-usage !give target
 
-!gratz 
+!gratz: 
 example-usage: !gratz cc_member_to_congratulate

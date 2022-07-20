@@ -1,6 +1,5 @@
 package com.altar_of_net;
 
-import java.security.MessageDigest;
 
 
 public class AltarOfNetUtils {

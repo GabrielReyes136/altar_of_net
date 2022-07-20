@@ -3,15 +3,15 @@ package com.altar_of_net;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.clan.ClanChannel;
-import net.runelite.api.events.GameStateChanged;
+// import net.runelite.api.clan.ClanChannel;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
-import net.runelite.client.eventbus.Subscribe;
+// net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.chat.ChatCommandManager;
 import net.runelite.api.events.ChatMessage;
+// com.altar_of_net.AltarOfNetUtils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -25,8 +25,6 @@ import java.time.format.DateTimeFormatter;
 )
 public class altar_of_net_plugin extends Plugin
 {
-	private boolean isPlayerInAltarOfNet;
-	//public static final String LOG_CURRENT_CLAN = "!developer-log-current-clan";
 	public static final String EVERYBODY_TARGET_X = "!kill";
 	public static final String EVENT_ALERT = "!event";
 	public static final String SLAP_COMMAND = "!slap";
@@ -42,35 +40,20 @@ public class altar_of_net_plugin extends Plugin
 
 	public static final String GRATZ_COMMAND = "!gratz";
 
-
-
-	private long my_time;
 	@Inject
 	private Client client;
 
 	@Inject
 	private ChatCommandManager altarOfNetChatCommandManager;
 
-	/*@Inject
-	private altar-of-net-config config;
-	*/
-
-
-	private ClanChannel myCurrentClanChannel;
-
 	@Override
 	protected void startUp() throws Exception
 	{
-		myCurrentClanChannel = null;
-		isPlayerInAltarOfNet = false;
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 
-
 		try {
-			
 
-			
 			altarOfNetChatCommandManager.registerCommand(GREET_COMMAND_STRING, this::greet_handler);
 			altarOfNetChatCommandManager.registerCommand(RANKS_HELPER, this::ranks_handler);
 			altarOfNetChatCommandManager.registerCommand(MUTE_COMMAND, this::mute_handler);
@@ -89,15 +72,8 @@ public class altar_of_net_plugin extends Plugin
 		} catch(NullPointerException e) {
 
 			e.printStackTrace(pw);
-			
 		}
-
-
-		
 	}
-
-	
-
 
 
 	@Override
@@ -121,32 +97,8 @@ public class altar_of_net_plugin extends Plugin
 	}
 
 
-
-	private boolean validate_client( String caller) {
-			return true;
-
-			/* planned to be used in future for commands to have different effects
-			   based on the users current active cc
-			myCurrentClanChannel = client.getClanChannel();
-			if(myCurrentClanChannel != null) {
-				if (myCurrentClanChannel.getName().equals("altar of net"))
-					isPlayerInAltarOfNet = true;
-				else {
-					isPlayerInAltarOfNet = false;
-					//client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you must be a member of the altar of net clan to use this command" , null);
-				}
-			}
-			
-			
-			return isPlayerInAltarOfNet;
-			*/
-
-	}
 	private void gratz_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("gratz-handler") ) {
-			//output error message
-			return;
-		}
+
 		String[] t0 = Message.split(" ", 2);
 		ChatMessageBuilder myBuilder = new ChatMessageBuilder();
 		String response;
@@ -171,10 +123,7 @@ public class altar_of_net_plugin extends Plugin
 	}
 
 	private void greet_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("greet-handler") ) {
-			//output error message
-			return;
-		}
+
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
 		String[] t0 = Message.split(" ", 2);
 		String t1;
@@ -203,10 +152,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	private void commands_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("commands-handler") ) {
-			//output error message
-			return;
-		}
+
 
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.HIGHLIGHT)
@@ -221,10 +167,6 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	private void prebgs( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("prebgs-handler") ) {
-			//output error message
-			return;
-		}
 
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.HIGHLIGHT)
@@ -237,10 +179,6 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	private void bgs( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("bgs-handler") ) {
-			//output error message
-			return;
-		}
 
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.HIGHLIGHT)
@@ -253,10 +191,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	private void beg_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("beg-handler") ) {
-			//output error message
-			return;
-		}
+
 		String[] t0 = Message.split(" ", 2);
 		if (t0.length != 2) return;
 		String response = new ChatMessageBuilder()
@@ -277,10 +212,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	private void give_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("give-handler") ) {
-			//output error message
-			return;
-		}
+
 		String[] t0 = Message.split(" ", 2);
 		if (t0.length != 2) return;
 		String response = new ChatMessageBuilder()
@@ -301,10 +233,7 @@ public class altar_of_net_plugin extends Plugin
 	}
 
 	private void kill_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("kill-handler") ) {
-			//output error message
-			return;
-		}
+
 		String[] t0 = Message.split(" ", 2);
 		if (t0.length != 2) return;
 		String response = new ChatMessageBuilder()
@@ -324,10 +253,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	private void mute_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("mute-handler") ) {
-			//output error message
-			return;
-		}
+
 	String[] t0 = Message.split(" ", 2);
 	if (t0.length <= 1) return;
 	if(Message != null) {
@@ -348,10 +274,7 @@ public class altar_of_net_plugin extends Plugin
 	}
 }
 	private void slap_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("slap-handler") ) {
-			//output error message
-			return;
-		}
+
 
 
 		String[] t0 = Message.split(" ", 2);
@@ -374,10 +297,7 @@ public class altar_of_net_plugin extends Plugin
 		}
 	}
 	private void ranks_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("ranks-handler") ) {
-			//output error message
-			return;
-		}
+
 
 		String response = new ChatMessageBuilder()
 				.append(ChatColorType.NORMAL)
@@ -416,10 +336,7 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 	private void event_handler( ChatMessage chatMessage, String Message) {
-		if ( !validate_client("event-handler") ) {
-			//output error message
-			return;
-		}
+
 	    //usage !event {EVENT STRING} {WORLD} {SHARE | FFA}
 		String[] t0 = Message.split(" ", 4);
 		String t1;
@@ -474,13 +391,6 @@ public class altar_of_net_plugin extends Plugin
 		client.refreshChat();
 	}
 
-/* config template
-	@Provides
-	altar_of_net_config provideConfig(ConfigManager configManager)
-	{
-		return configManager.getConfig(altar_of_net_config.class);
-	}
-	*/
 
 
 }
